@@ -44,7 +44,7 @@ while(1):
     y = 100
     w = 400
     h = 500
-    cv.rectangle(frame,(x,y),(x+w,y+h),(0,0,255),2)
+    cv.rectangle(frame,(500,100),(900,600),(0,0,255),2)
     crop = frame[500:900, 100:600]   
  
     #img = cv.cvtColor(rect, cv.COLOR_BGR2RGB) 
