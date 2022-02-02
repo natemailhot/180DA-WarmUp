@@ -1,0 +1,8 @@
+Question Answers:
+
+4.1
+The RGB threshold values are slightly better than the HSV.
+The threshold for RGB is a bit larger than HSV in with a range of 50 in the red and 100 in the blue.
+HSV has a range of only 3 in the hue but 155 in saturation and lightness to capture the blue in the box.
+
+4.3

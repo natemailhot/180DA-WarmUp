@@ -38,18 +38,15 @@ clt = KMeans(n_clusters=3) #cluster number
 while(1):
     # Take each frame
     _, frame = cap.read()
+    h = len(frame)
+    w = len(frame[1])
     
-    #Add rectangle frame
-    x = 500
-    y = 100
-    w = 400
-    h = 500
-    cv.rectangle(frame,(500,100),(900,600),(0,0,255),2)
-    crop = frame[500:900, 100:600]   
+    cv.rectangle(frame,(w//2-100,h//2-100),(w//2+100,h//2+100),(0,0,255),2)
+    crop = frame[h//2 - 100 : h//2 + 100, w//2 -100 : w//2 + 100]   
  
-    #img = cv.cvtColor(rect, cv.COLOR_BGR2RGB) 
+    img = cv.cvtColor(crop, cv.COLOR_BGR2RGB) 
 
-    img = crop.reshape((crop.shape[0] * crop.shape[1],3)) #represent as row*column,channel number
+    img = crop.reshape((crop.shape[0] * crop.shape[1],3))
     clt.fit(img)
 
     hist = find_histogram(clt)
