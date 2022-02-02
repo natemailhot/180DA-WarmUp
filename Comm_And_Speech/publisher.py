@@ -41,9 +41,9 @@ client.loop_start()
 
 # 5. use publish() to publish messages to the broker.
 # payload must be a string, bytearray, int, float or None.
-print(’Publishing...’)
+print('Publishing...')
 for i in range(10):
-    client.publish(’ece180d/test’, float(np.random.random(1)), qos=1)
+    client.publish('ece180d/team4', float(np.random.random(1)), qos=1)
 
 # 6. use disconnect() to disconnect from the broker.
 client.loop_stop()
