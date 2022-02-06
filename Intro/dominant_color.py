@@ -1,3 +1,7 @@
+#Using code from
+#https://github.com/opencv/opencv/blob/master/samples/python/kmeans.py
+#https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html
+
 import cv2 as cv
 import numpy as np
 cap = cv.VideoCapture(0)

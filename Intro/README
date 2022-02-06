@@ -5,4 +5,17 @@ The RGB threshold values are slightly better than the HSV.
 The threshold for RGB is a bit larger than HSV in with a range of 50 in the red and 100 in the blue.
 HSV has a range of only 3 in the hue but 155 in saturation and lightness to capture the blue in the box.
 
+4.2
+Changing the lighting conditions really changed the ability to track the
+object. Obviously with the lights off it did not track, but even with the phone
+light it was not able to track likely because the shinyness made the object
+seem like a different color with the phone light.
+
 4.3
+It was tought to track the color picker on my phone. If the brightness was all
+the way down, the color would not show at all. If the brightness was all the
+way it, it was too shiny and reflective to track.
+
+4.4
+The phone color picker is definitely more robust to brightness than the object.
+It was tough for the tracker to pick up the exact proper color of either.
