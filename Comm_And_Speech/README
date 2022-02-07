@@ -1,0 +1,9 @@
+Answers to Questions:
+
+5.1
+Message delivery and communication is made possible by MQTT. The publisher and subscriber make this communication possible. This will allow the game to potentially work virtually instead of off of one device. The scalability and security seem to be potential drawbacks of MQTT. A lag time of 1 second would be reasonable for MQTT. This is important for our game because it means we need to be a bit slower in how we broadcast and process the notes played. I think MQTT is the preferred method to transmit data but upon research it does seem Constrained Application Protocol (CoAP) is another slightly faster method that I should look into more.
+
+5.2
+The speech program has difficulty under noise.
+In the project we can use the speech program to potentially identify someone saying whether a pitch goes up or down. Potentially more advanced and would require a different database would be to try and identify tone. We can expect the speech program to be moderately complex. Expecting tone knowledge may be asking for too much. We need a medium level of speech accuracy for the simple implementation of our game to determine the difference between the words “up” and “down.” A good speaker system and microphone would go a long way towards having strong confidence in the speech recognition.
+
