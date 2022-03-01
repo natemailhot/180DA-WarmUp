@@ -23,13 +23,16 @@ with mp_hands.Hands(
     w = len(image[1])
     #w: 540-740, h:260-460
     #print("Box Coords: w: ", w//2 - 100, "h: ", h//2 - 100)
-    
-    cv2.rectangle(image,(w//2-100,h//2-100),(w//2+100,h//2+100),(0,0,255),2)
-    crop = image[h//2 - 100 : h//2 + 100, w//2 -100 : w//2 + 100]   
- 
-    img = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB) 
+   
+    mid_w = w // 7
 
-    img = crop.reshape((crop.shape[0] * crop.shape[1],3))
+    i = 0
+    while i < w:        
+        cv2.rectangle(image,(i,h//2-100),(i+mid_w,h//2+100),(0,0,255),2)
+        crop = image[h//2 - 100 : h//2 + 100, i : i  + mid_w]   
+        img = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB) 
+        img = crop.reshape((crop.shape[0] * crop.shape[1],3))
+        i += mid_w
     
     # To improve performance, optionally mark the image as not writeable to
     # pass by reference.
@@ -64,15 +67,22 @@ with mp_hands.Hands(
 
     #print("x: ", p_x*w, "y: ", p_y*h)
 
-    in_w = False
+    key = 'C'
     in_h = False
-    if p_x*w < (w//2 + 100) and p_x*w > (w//2 - 100):
-        in_w = True
     if p_y*h < (h//2 + 100) and p_y*h > (h//2 - 100):
         in_h = True
-
-    if in_w and in_h:
-        print("Finger in box")
+        p_x *= w
+        if p_x < mid_w*2 and p_x > mid_w:
+            key = 'A'
+        if p_x < mid_w*3 and p_x > mid_w*2:
+            key = 'G'
+        if p_x < mid_w*4 and p_x > mid_w*3:
+            key = 'F'
+        if p_x < mid_w*5 and p_x > mid_w*4:
+            key = 'E'
+        if p_x < mid_w*6 and p_x > mid_w*5:
+            key = 'D'
+        print(key)
 
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
