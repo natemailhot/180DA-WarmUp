@@ -5,6 +5,12 @@ mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_hands = mp.solutions.hands
 
+TIME_TO_COUNT = 30
+
+answer = ""
+prev_key_count = 0
+prev_key = ""
+
 # For webcam input:
 cap = cv2.VideoCapture(0)
 with mp_hands.Hands(
@@ -24,7 +30,8 @@ with mp_hands.Hands(
     #w: 540-740, h:260-460
     #print("Box Coords: w: ", w//2 - 100, "h: ", h//2 - 100)
    
-    mid_w = w // 7
+    #mid_w = w // 7
+    mid_w = w // 2
 
     i = 0
     while i < w:        
@@ -66,7 +73,7 @@ with mp_hands.Hands(
               i += 1
 
     #print("x: ", p_x*w, "y: ", p_y*h)
-
+    '''
     key = 'C'
     in_h = False
     if p_y*h < (h//2 + 100) and p_y*h > (h//2 - 100):
@@ -83,10 +90,33 @@ with mp_hands.Hands(
         if p_x < mid_w*6 and p_x > mid_w*5:
             key = 'D'
         print(key)
+    '''
+    key = 'd'
+    in_h = False
+    if p_y*h < (h//2 + 100) and p_y*h > (h//2 - 100):
+        in_h = True
+        p_x *= w
+        if p_x < mid_w*2 and p_x > mid_w:
+            key = 'f'
+        
+        if prev_key == "":
+            prev_key = key
+            prev_key_count = 1
+        elif key == prev_key:
+            prev_key_count = prev_key_count + 1
+        elif key != prev_key:
+            prev_key_count = 1
+            prev_key = key
 
+        if prev_key_count == TIME_TO_COUNT:
+            answer  = answer + key
+            prev_key_count = 0
+    
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
     if cv2.waitKey(5) & 0xFF == 27:
       break
+
+print(answer)
 
 cap.release()
